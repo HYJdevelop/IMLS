@@ -7,12 +7,14 @@ function App() {
   const [studentId, setStudentId] = useState('')
   const [credential, setCredential] = useState<{ account: string; password: string } | null>(null)
   const [message, setMessage] = useState('')
+  const [notEnrolled, setNotEnrolled] = useState(false)
   const [loading, setLoading] = useState(false)
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setCredential(null)
     setMessage('')
+    setNotEnrolled(false)
 
     const normalizedId = studentId.trim()
     if (!/^\d+$/.test(normalizedId)) {
@@ -22,7 +24,7 @@ function App() {
 
     const encoded = encodedCredentials[normalizedId]
     if (!encoded) {
-      setMessage('查無此學號，請確認輸入是否正確。')
+      setNotEnrolled(true)
       return
     }
 
@@ -93,8 +95,13 @@ function App() {
               <span>{loading ? '查詢中' : '查詢帳密'}</span>
               <span className="button-arrow" aria-hidden="true">→</span>
             </button>
-            <p className={`form-message${message ? ' is-visible' : ''}`} id="lookup-message" role="status" aria-live="polite">
-              {message}
+            <p className={`form-message${message || notEnrolled ? ' is-visible' : ''}`} id="lookup-message" role="status" aria-live="polite">
+              {notEnrolled ? (
+                <>
+                  您未加入這門課。若有問題，請聯絡{' '}
+                  <a href="mailto:hyjdevelop@gmail.com">hyjdevelop@gmail.com</a>，我們會幫你維護名單。
+                </>
+              ) : message}
             </p>
           </form>
 
