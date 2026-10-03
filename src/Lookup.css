@@ -23,7 +23,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #1d4ed8; outline-offs
 .page-shell { width: min(1120px, calc(100% - 64px)); min-height: 100svh; margin: 0 auto; display: flex; flex-direction: column; }
 .topbar { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid #e2e8f0; }
 .wordmark { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; }
-.wordmark-icon { width: 30px; height: 30px; flex: 0 0 30px; display: grid; place-items: center; border: 1px solid #bfdbfe; border-radius: 50%; color: var(--green); font-size: 13px; }
+.brand-logo { width: 42px; height: 42px; flex: 0 0 42px; object-fit: contain; border-radius: 4px; background: #fff; }
 .service-status { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; white-space: nowrap; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #548364; }
 .lookup-layout { width: min(928px, 100%); margin: auto; padding: 88px 0 96px; display: grid; grid-template-columns: 1fr 390px; align-items: center; gap: 100px; }
@@ -40,8 +40,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid #1d4ed8; outline-offs
 .graphic-line { position: absolute; top: 88px; left: 0; width: 240px; height: 1px; background: #cbd5e1; }
 .graphic-tag { position: absolute; top: 24px; right: 4px; color: var(--green); font-size: 9px; line-height: 1.7; }
 .graphic-number { position: absolute; right: 4px; bottom: 20px; color: #64748b; font-size: 11px; }
-.privacy-note { margin: 22px 0 0; color: var(--muted); font-size: 12px; }
-.privacy-note span { margin-right: 7px; color: #2563eb; font-size: 9px; }
 .form-panel { padding: 34px 32px 30px; border: 1px solid #dbe4f0; border-radius: 5px; background: rgba(255, 255, 255, .88); box-shadow: 0 20px 55px rgba(15, 23, 42, .07); }
 .form-panel label { display: block; margin-bottom: 11px; font-size: 14px; font-weight: 700; }
 .input-wrap { position: relative; }

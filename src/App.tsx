@@ -5,7 +5,7 @@ function App() {
     <main className="page-shell">
       <header className="topbar">
         <a className="wordmark" href="/" aria-label="資訊科技與媒體識讀帳密系統首頁">
-          <span className="wordmark-icon" aria-hidden="true">鍵</span>
+          <img className="brand-logo" src="https://www.hyjdevelop.com/logo.png" alt="HYJdevelop 標誌" referrerPolicy="no-referrer" />
           <span>資訊科技與媒體識讀帳密系統</span>
         </a>
       </header>
@@ -21,7 +21,6 @@ function App() {
             <span className="graphic-tag">STUDENT<br />IDENTITY</span>
             <span className="graphic-number">01</span>
           </div>
-          <p className="privacy-note"><span aria-hidden="true">●</span> 帳密僅由伺服器查詢，不放入網頁程式</p>
         </div>
 
         <div className="form-panel">

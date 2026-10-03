@@ -78,7 +78,8 @@ def set_security_headers(response):
     response.headers["Referrer-Policy"] = "no-referrer"
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; style-src 'self'; script-src 'self'; "
-        "img-src 'self' data:; form-action 'self'; base-uri 'self'; frame-ancestors 'none'"
+        "img-src 'self' data: https://www.hyjdevelop.com; form-action 'self'; "
+        "base-uri 'self'; frame-ancestors 'none'"
     )
     return response
 
