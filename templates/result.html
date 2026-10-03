@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f5ef">
+    <title>查詢結果 | 資訊科技與媒體識讀帳密系統</title>
+    <link rel="stylesheet" href="/result.css">
+  </head>
+  <body>
+    <main class="result-shell">
+      <a class="wordmark" href="/">
+        <span class="wordmark-icon" aria-hidden="true">鍵</span>
+        <span>資訊科技與媒體識讀帳密系統</span>
+      </a>
+      {% if credential %}
+        <section class="result-panel" aria-labelledby="result-title">
+          <span class="result-check" aria-hidden="true">✓</span>
+          <p class="eyebrow">LOOKUP COMPLETE</p>
+          <h1 id="result-title">查詢完成</h1>
+          <p class="result-note">請妥善保管個人登入資料</p>
+          <dl>
+            <div><dt>帳號</dt><dd>{{ credential.account }}</dd></div>
+            <div><dt>密碼</dt><dd>{{ credential.password }}</dd></div>
+          </dl>
+        </section>
+      {% else %}
+        <section class="result-panel error-panel" aria-labelledby="result-title">
+          <p class="eyebrow">LOOKUP NOTICE</p>
+          <h1 id="result-title">無法完成查詢</h1>
+          <p class="result-note">{{ error }}</p>
+        </section>
+      {% endif %}
+      <a class="back-link" href="/">返回查詢</a>
+      <footer class="result-footer">
+        <span>請勿將密碼提供給他人</span>
+        <span>由 <a href="https://hyjdevelop.com" target="_blank" rel="noreferrer">HYJdevelop</a> 開發</span>
+      </footer>
+    </main>
+  </body>
+</html>
