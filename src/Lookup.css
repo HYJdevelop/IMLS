@@ -41,7 +41,12 @@ button:focus-visible, a:focus-visible { outline: 2px solid #1d4ed8; outline-offs
 .graphic-tag { position: absolute; top: 24px; right: 4px; color: var(--green); font-size: 9px; line-height: 1.7; }
 .graphic-number { position: absolute; right: 4px; bottom: 20px; color: #64748b; font-size: 11px; }
 .form-panel { padding: 34px 32px 30px; border: 1px solid #dbe4f0; border-radius: 5px; background: rgba(255, 255, 255, .88); box-shadow: 0 20px 55px rgba(15, 23, 42, .07); }
-.form-panel label { display: block; margin-bottom: 11px; font-size: 14px; font-weight: 700; }
+.service-panel { min-height: 194px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.service-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #dbeafe; color: #1d4ed8; font-family: "Consolas", monospace; font-size: 16px; font-weight: 700; }
+.service-panel h2 { margin: 20px 0 8px; color: var(--ink); font-size: 19px; line-height: 1.4; }
+.service-panel p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.lookup-form { text-align: left; }
+.lookup-form label { display: block; margin-bottom: 11px; color: var(--ink); font-size: 14px; font-weight: 700; }
 .input-wrap { position: relative; }
 .input-wrap input { width: 100%; height: 54px; padding: 0 44px 0 15px; border: 1px solid #cbd5e1; border-radius: 3px; outline: none; background: #fff; color: var(--ink); font-size: 16px; transition: border-color .18s, box-shadow .18s; }
 .input-wrap input::placeholder { color: #94a3b8; }
@@ -49,8 +54,27 @@ button:focus-visible, a:focus-visible { outline: 2px solid #1d4ed8; outline-offs
 .input-mark { position: absolute; top: 15px; right: 15px; color: #94a3b8; font-family: "Consolas", monospace; }
 .field-hint { margin: 9px 0 24px; color: var(--muted); font-size: 12px; }
 .submit-button { width: 100%; height: 52px; padding: 0 16px 0 19px; display: flex; align-items: center; justify-content: space-between; border: 0; border-radius: 3px; background: var(--green); color: #fff; font-size: 14px; font-weight: 700; transition: background .18s, transform .18s; }
-.submit-button:hover { background: #1e40af; transform: translateY(-1px); }
+.submit-button:hover:not(:disabled) { background: #1e40af; transform: translateY(-1px); }
+.submit-button:disabled { cursor: wait; opacity: .72; }
 .button-arrow { font-size: 21px; font-weight: 400; }
+.form-message { min-height: 18px; margin: 13px 0 0; color: #b42318; font-size: 12px; }
+.form-message:not(.is-visible) { color: transparent; }
+.credential-result { margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0; animation: reveal .24s ease both; }
+.result-heading { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+.result-check { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #dbeafe; color: #1d4ed8; font-size: 14px; }
+.result-heading h2 { margin: 0; color: var(--ink); font-size: 14px; }
+.result-heading p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
+.credential-row { min-height: 49px; display: grid; grid-template-columns: 46px minmax(0, 1fr) 34px; align-items: center; gap: 9px; border-top: 1px solid #e2e8f0; }
+.credential-label { color: var(--muted); font-size: 12px; }
+.credential-value { overflow-wrap: anywhere; font-family: "Consolas", monospace; font-size: 14px; }
+.copy-button { width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 3px; background: transparent; color: #526079; }
+.copy-button:hover { background: #dbeafe; color: #1d4ed8; }
+.copy-button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
+.reset-button { margin-top: 15px; padding: 5px 0; border: 0; background: transparent; color: #1d4ed8; font-size: 12px; font-weight: 700; }
+.reset-button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.service-panel, .service-icon { display: none; }
+.form-panel:has(.credential-result) { align-self: center; }
+@keyframes reveal { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 .page-footer { min-height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid #e2e8f0; color: var(--muted); font-size: 11px; }
 .page-footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 .page-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }

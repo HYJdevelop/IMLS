@@ -1,6 +1,51 @@
+import { useState, type FormEvent } from 'react'
+import { decodePassword } from './data/decodeCredential'
+import { encodedCredentials } from './data/credentials.generated'
 import './Lookup.css'
 
 function App() {
+  const [studentId, setStudentId] = useState('')
+  const [credential, setCredential] = useState<{ account: string; password: string } | null>(null)
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setCredential(null)
+    setMessage('')
+
+    const normalizedId = studentId.trim()
+    if (!/^\d+$/.test(normalizedId)) {
+      setMessage('請輸入不含 s 的數字學號。')
+      return
+    }
+
+    const encoded = encodedCredentials[normalizedId]
+    if (!encoded) {
+      setMessage('查無此學號，請確認輸入是否正確。')
+      return
+    }
+
+    setLoading(true)
+    try {
+      const password = await decodePassword(normalizedId, encoded)
+      setCredential({ account: `s${normalizedId}`, password })
+    } catch {
+      setMessage('無法解碼查詢資料，請重新產生帳密資料後再試。')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function copyValue(value: string) {
+    try {
+      await navigator.clipboard.writeText(value)
+      setMessage('已複製到剪貼簿。')
+    } catch {
+      setMessage('無法使用剪貼簿，請手動選取並複製。')
+    }
+  }
+
   return (
     <main className="page-shell">
       <header className="topbar">
@@ -24,7 +69,7 @@ function App() {
         </div>
 
         <div className="form-panel">
-          <form action="/lookup" method="post">
+          <form className="lookup-form" onSubmit={handleSubmit}>
             <label htmlFor="student-id">學生學號</label>
             <div className="input-wrap">
               <input
@@ -36,18 +81,51 @@ function App() {
                 autoCapitalize="off"
                 spellCheck={false}
                 placeholder="輸入學號"
-                pattern="[0-9]+"
-                title="請輸入不含 s 的數字學號"
+                value={studentId}
+                onChange={(event) => setStudentId(event.target.value)}
+                aria-describedby="student-id-hint lookup-message"
                 required
               />
               <span className="input-mark" aria-hidden="true">#</span>
             </div>
-            <p className="field-hint">輸入數字即可，不需要加上 s</p>
-            <button className="submit-button" type="submit">
-              <span>查詢帳密</span>
+            <p className="field-hint" id="student-id-hint">輸入數字即可，不需要加上 s</p>
+            <button className="submit-button" type="submit" disabled={loading}>
+              <span>{loading ? '查詢中' : '查詢帳密'}</span>
               <span className="button-arrow" aria-hidden="true">→</span>
             </button>
+            <p className={`form-message${message ? ' is-visible' : ''}`} id="lookup-message" role="status" aria-live="polite">
+              {message}
+            </p>
           </form>
+
+          {credential && (
+            <section className="credential-result" aria-live="polite">
+              <div className="result-heading">
+                <span className="result-check" aria-hidden="true">✓</span>
+                <div>
+                  <h2>查詢完成</h2>
+                  <p>請妥善保管個人登入資料</p>
+                </div>
+              </div>
+              <div className="credential-row">
+                <span className="credential-label">帳號</span>
+                <output className="credential-value">{credential.account}</output>
+                <button className="copy-button" type="button" onClick={() => void copyValue(credential.account)} aria-label="複製帳號" title="複製帳號">
+                  <CopyIcon />
+                </button>
+              </div>
+              <div className="credential-row">
+                <span className="credential-label">密碼</span>
+                <output className="credential-value">{credential.password}</output>
+                <button className="copy-button" type="button" onClick={() => void copyValue(credential.password)} aria-label="複製密碼" title="複製密碼">
+                  <CopyIcon />
+                </button>
+              </div>
+              <button className="reset-button" type="button" onClick={() => { setCredential(null); setStudentId(''); setMessage('') }}>
+                查詢其他學號
+              </button>
+            </section>
+          )}
         </div>
       </section>
 
@@ -59,6 +137,15 @@ function App() {
         </span>
       </footer>
     </main>
+  )
+}
+
+function CopyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="8" y="8" width="12" height="12" rx="2" />
+      <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" />
+    </svg>
   )
 }
 

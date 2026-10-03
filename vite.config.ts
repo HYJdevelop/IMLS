@@ -3,10 +3,6 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [react()],
-  server: {
-    proxy: {
-      '/lookup': 'http://127.0.0.1:5000',
-    },
-  },
 })
