@@ -99,7 +99,7 @@ function App() {
               {notEnrolled ? (
                 <>
                   您未加入這門課。若有問題，請聯絡{' '}
-                  <a href="mailto:hyjdevelop@gmail.com">hyjdevelop@gmail.com</a>，我們會幫你維護名單。
+                  <a href="mailto:hyjdevelop@gmail.com">hyjdevelop@gmail.com</a>，我們會幫你進行名單加入或是檢查系統問題。
                 </>
               ) : message}
             </p>
