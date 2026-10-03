@@ -27,19 +27,12 @@ button:focus-visible, a:focus-visible { outline: 2px solid #1d4ed8; outline-offs
 .service-status { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; white-space: nowrap; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #548364; }
 .lookup-layout { width: min(928px, 100%); margin: auto; padding: 88px 0 96px; display: grid; grid-template-columns: 1fr 390px; align-items: center; gap: 100px; }
-.intro { position: relative; min-height: 400px; }
-.eyebrow, .graphic-tag, .graphic-number { font-family: "Consolas", "Noto Sans TC", monospace; }
+.intro { position: relative; }
+.eyebrow { font-family: "Consolas", "Noto Sans TC", monospace; }
 .eyebrow { margin: 0 0 22px; color: var(--green); font-size: 11px; }
 .eyebrow span { padding: 0 5px; color: #94a3b8; }
 .intro h1 { margin: 0; color: var(--ink); font-size: 52px; line-height: 1.2; font-weight: 700; }
 .intro-copy { margin: 15px 0 0; color: var(--muted); font-size: 16px; }
-.graphic { position: relative; width: 300px; height: 178px; margin-top: 47px; overflow: hidden; border-top: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1; }
-.graphic::before { position: absolute; inset: 18px auto 18px 47px; width: 135px; content: ""; border: 1px solid rgba(29, 78, 216, .42); border-radius: 50%; transform: rotate(-26deg); }
-.graphic-ring { position: absolute; top: 35px; left: 76px; width: 100px; height: 100px; border: 1px solid #ef4444; border-radius: 50%; }
-.graphic-ring::after { position: absolute; top: 44px; left: 44px; width: 10px; height: 10px; content: ""; border-radius: 50%; background: #facc15; }
-.graphic-line { position: absolute; top: 88px; left: 0; width: 240px; height: 1px; background: #cbd5e1; }
-.graphic-tag { position: absolute; top: 24px; right: 4px; color: var(--green); font-size: 9px; line-height: 1.7; }
-.graphic-number { position: absolute; right: 4px; bottom: 20px; color: #64748b; font-size: 11px; }
 .form-panel { padding: 34px 32px 30px; border: 1px solid #dbe4f0; border-radius: 5px; background: rgba(255, 255, 255, .88); box-shadow: 0 20px 55px rgba(15, 23, 42, .07); }
 .service-panel { min-height: 194px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
 .service-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #dbeafe; color: #1d4ed8; font-family: "Consolas", monospace; font-size: 16px; font-weight: 700; }
@@ -89,7 +82,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid #1d4ed8; outline-offs
   .eyebrow { margin-bottom: 14px; }
   .intro h1 { font-size: 39px; }
   .intro-copy { margin-top: 9px; font-size: 14px; }
-  .graphic { display: none; }
   .privacy-note { margin-top: 17px; }
   .form-panel { padding: 25px 21px 22px; }
   .page-footer { min-height: 53px; font-size: 10px; }

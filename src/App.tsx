@@ -62,12 +62,6 @@ function App() {
           <p className="eyebrow">ACCOUNT ACCESS <span>／</span> STUDENT</p>
           <h1 id="page-title">帳號與密碼</h1>
           <p className="intro-copy">登入系統密碼查詢</p>
-          <div className="graphic" aria-hidden="true">
-            <span className="graphic-ring" />
-            <span className="graphic-line" />
-            <span className="graphic-tag">STUDENT<br />IDENTITY</span>
-            <span className="graphic-number">01</span>
-          </div>
         </div>
 
         <div className="form-panel">
