@@ -80,7 +80,7 @@ export const encodedCredentials: Record<string, EncodedCredential> = {
   },
   "4114034054": {
     "salt": "3d64bd281d680574",
-    "value": "LUwjtuorgF8="
+    "value": "zxcvbYUIOP"
   },
   "4114038044": {
     "salt": "9c27b1ae539b873a",
